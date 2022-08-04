@@ -9,7 +9,6 @@ import Collapse from '@mui/material/Collapse';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -72,10 +71,12 @@ export default function RecipeReviewCard(props) {
    };
 
   //ADD PRODUCT TO CART
+  const storage = [{}];
   const handleClickBuy = (item) =>{
     setOpen2(true);
-    sessionStorage.setItem('item1:',JSON.stringify(item.title));
+    sessionStorage.setItem('item:',JSON.stringify(item.title));
     sessionStorage.setItem('price',JSON.stringify(item.price));
+    sessionStorage.setItem('Items',storage.push(JSON.stringify(item)));
   }
   const title = props.title;
   const price = props.price;

@@ -45,7 +45,7 @@ export default function ModalTransition(props) {
             price:700,
         }
     ]);
-    localStorage.setItem('Items',items);
+    sessionStorage.setItem('Items',JSON.stringify(items));
 
     return (
         <div>
@@ -77,7 +77,7 @@ export default function ModalTransition(props) {
                         {
                             items.map((item,index)=>{
                                 return(
-                                    <Item price={item.price} name={item.name}></Item>
+                                    <Item key={index} price={item.price} name={item.name}></Item>
                                 )
                             })
                         }

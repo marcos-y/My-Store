@@ -42,6 +42,7 @@ const CreateAccount = () => {
                 <TextField onChange={handleChangePassword} value={password} style={{marginTop:'15px'}} id="outlined-basic" label="Password" variant="outlined" />
                 <TextField onChange={handleChangeConfirmPassword} value={confirmPassword} style={{marginTop:'15px'}} id="outlined-basic" label="Confirm Password" variant="outlined" />
                 <Button onClick={handleClick} style={{marginTop:'10px',float:'left',width:'30px'}} variant="contained">Submit</Button>
+                <h1></h1>
             </div>
         </>
     )

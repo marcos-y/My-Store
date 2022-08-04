@@ -6,6 +6,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
+import TextfieldPassword from '../TextfieldPassword/TextfieldPassword';
 
 const style = {
   position: 'absolute',
@@ -34,15 +35,22 @@ export default function BasicModal(props) {
   const handleChangeEmail = (event) => setEmail(event.target.value);
   const handleChangePassword = (event) => setPassword(event.target.value);
 
+  const user = [{email,password}];
+
   const handleClick = () =>{
     console.log(email,password);
-    if ( (email==='marcos@gmail') && (password===123))
+    if ( (email=='marcos@gmail') && (password==123))
     {
       setIsLogged(true);
       sessionStorage.setItem('isLogged',true);
     }
     setEmail('');
     setPassword('');
+    props.handleClose2();
+  }
+
+  const handleClickLogout = () =>{
+    sessionStorage.setItem('isLogged',false);
   }
 
   return (
@@ -63,9 +71,15 @@ export default function BasicModal(props) {
             </Typography>
             <TextField onChange={handleChangeEmail} value={email} style={{marginTop:'15px'}}
             id="outlined-basic" label="Email" variant="outlined" />
-            <TextField onChange={handleChangePassword} value={password} style={{marginTop:'15px'}} id="outlined-basic" 
-            label="Password" variant="outlined" />
-            <Button onClick={handleClick} style={{marginTop:'10px'}} variant="contained">Submit</Button>
+     
+            <TextField onChange={handleChangePassword} value={password} style={{marginTop:'15px'}}
+            id="outlined-basic" label="Password" variant="outlined" />
+            {/*
+            <TextfieldPassword password={password}></TextfieldPassword>
+            */}
+            <Button onClick={handleClick} style={{marginTop:'10px'}} variant="contained">
+              Submit
+            </Button>
             </div>
         </Box>
       </Modal>

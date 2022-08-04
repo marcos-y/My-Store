@@ -15,21 +15,21 @@ import AdbIcon from '@mui/icons-material/Adb';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import icon from '../../Images/user2.png';
 import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Link
+  Link,
+  useNavigate
 } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import Modal from '../../Components/Modal/Modal';
 import Modal2 from '../../Components/Modal2/Modal2';
 import ModalTransition from '../../Components/ModalTransition/ModalTransition';
+import profileImage from '../../Images/ed.jpg';
 
-const pages = ['smartphones', 'computers', 'drones', 'Create Account'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
-const links = ['/', '/cellphones', '/computers', '/drones', '/create-account'];
 
 const ResponsiveAppBar = () => {
+
+  const isLogged = JSON.parse(sessionStorage.getItem('isLogged'));
+
+  const pages = ['smartphones', 'computers', 'drones', isLogged ? null : 'Create Account'];
+  const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -52,11 +52,26 @@ const ResponsiveAppBar = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const [open2, setOpen2] = React.useState(false);
-  const handleOpen2 = () => setOpen2(true);
-  const handleClose2 = () => setOpen2(false);
+  const [openModal2, setOpenModal2] = React.useState(false);
+  const handleOpenModal2 = () => setOpenModal2(true);
+  const handleCloseModal2 = () => setOpenModal2(false);
 
-  const isLogged = JSON.parse(sessionStorage.getItem('isLogged'));
+
+  let navigate = useNavigate();
+  const handleClickLogout = () => {
+    sessionStorage.setItem('isLogged', false);
+    setAnchorElUser(null);
+    navigate('/');
+  }
+  const openDashboard = () => {
+    navigate('/dashboard');
+  };
+  const openProfile = () => {
+    navigate('/profile');
+  }
+  const openAccount = () => {
+    navigate('/account');
+  }
 
   return (
     <>
@@ -64,23 +79,23 @@ const ResponsiveAppBar = () => {
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-            <Link style={{textDecoration:'none',color:'white'}} to="/">
-            <Typography
-              variant="h6"
-              noWrap
-              component="a"
-              sx={{
-                mr: 2,
-                display: { xs: 'none', md: 'flex' },
-                fontFamily: 'monospace',
-                fontWeight: 700,
-                letterSpacing: '.3rem',
-                color: 'inherit',
-                textDecoration: 'none',
-              }}
-            >
-              MyStore
-            </Typography>
+            <Link style={{ textDecoration: 'none', color: 'white' }} to="/">
+              <Typography
+                variant="h6"
+                noWrap
+                component="a"
+                sx={{
+                  mr: 2,
+                  display: { xs: 'none', md: 'flex' },
+                  fontFamily: 'monospace',
+                  fontWeight: 700,
+                  letterSpacing: '.3rem',
+                  color: 'inherit',
+                  textDecoration: 'none',
+                }}
+              >
+                MyStore
+              </Typography>
             </Link>
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
               <IconButton
@@ -139,7 +154,7 @@ const ResponsiveAppBar = () => {
             </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
               {pages.map((page) => (
-                <Link style={{textDecoration:'none'}} to={page!='Create Account' ? `/${page}` : "/create-account"}>
+                <Link key={page} style={{ textDecoration: 'none' }} to={page != 'Create Account' ? `/${page}` : "/create-account"}>
                   <Button
                     key={page}
                     sx={{ my: 2, color: 'white', display: 'block' }}
@@ -155,8 +170,8 @@ const ResponsiveAppBar = () => {
                 <ShoppingCartIcon fontSize="large"></ShoppingCartIcon>
               </IconButton>
               <Tooltip title="Login">
-                <IconButton onClick={isLogged ? handleOpenUserMenu : handleOpen2} sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp" src={icon} />
+                <IconButton onClick={isLogged ? handleOpenUserMenu : handleOpenModal2} sx={{ p: 0 }}>
+                  <Avatar alt="Remy Sharp" src={isLogged ? profileImage : icon} />
                 </IconButton>
               </Tooltip>
               <Menu
@@ -176,8 +191,11 @@ const ResponsiveAppBar = () => {
                 onClose={handleCloseUserMenu}
               >
                 {settings.map((setting) => (
-                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center">{setting}</Typography>
+                  <MenuItem key={setting} onClick={setting == 'Logout' ? handleClickLogout : (setting == 'Profile' ? openProfile :
+                    (setting == 'Account' ? openAccount :
+                      (setting == 'Dashboard' ? openDashboard : handleCloseUserMenu)
+                    ))}>
+                    <Typography key={setting} textAlign="center">{setting}</Typography>
                   </MenuItem>
                 ))}
               </Menu>
@@ -186,7 +204,7 @@ const ResponsiveAppBar = () => {
         </Container>
       </AppBar>
       <ModalTransition handleOpen={handleOpen} handleClose={handleClose} open={open}></ModalTransition>
-      <Modal2 handleOpen2={handleOpen2} handleClose2={handleClose2} open2={open2}></Modal2>
+      <Modal2 handleOpen2={handleOpenModal2} handleClose2={handleCloseModal2} open2={openModal2}></Modal2>
     </>
   );
 };
