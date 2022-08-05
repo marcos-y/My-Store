@@ -9,7 +9,7 @@ const Account = () => {
             <AppBar></AppBar>
             <div style={{
                 maxWidth: '600px', margin: 'auto', padding: '8px', marginTop: '6px',
-                backgroundColor: 'white', borderRadius: '10px'
+                backgroundColor: 'white', borderRadius: '10px', fontFamily:'roboto'
             }}>
             <div style={{margin:'auto'}}>
                 <h1>Account</h1>

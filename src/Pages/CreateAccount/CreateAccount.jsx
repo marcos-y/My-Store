@@ -34,7 +34,7 @@ const CreateAccount = () => {
         <AppBar></AppBar>
             <div style={{display:'flex',flexDirection:'column',maxWidth:'800px',margin:'auto',
             marginTop:'10px',borderRadius:'5px',padding:'10px',backgroundColor:'#e0edf4'}}>
-                <h1 style={{fontFamily: 'Press Start 2P, cursive'}}>Create a new Account</h1>
+                <h1 style={{fontFamily: 'Roboto, sans-serif'}}>Create a new Account</h1>
                 <TextField onChange={handleChangeFirstName} value={firstName} id="outlined-basic" label="First Name" variant="outlined" />
                 <TextField onChange={handleChangeLastName} value={lastName} style={{marginTop:'15px'}} id="outlined-basic" label="Last Name" variant="outlined" />
                 <TextField onChange={handleChangeEmail} value={email} style={{marginTop:'15px'}} id="outlined-basic" label="Email" variant="outlined" />

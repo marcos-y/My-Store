@@ -74,7 +74,7 @@ const Computers = () => {
         <>
             <AppBar></AppBar>
             <div style={{ display: 'flex', flexDirection: 'column', maxWidth: '1100px', margin: 'auto', padding: '10px' }}>
-                <h1 style={{ marginLeft: '20px' }}>Computers</h1>
+                <h1 style={{ marginLeft: '20px',fontFamily: 'Roboto, sans-serif' }}>Computers</h1>
                 {/*
                 <div style={{ display: 'flex', justifyContent: 'center',flexWrap:'wrap' }}>
                     <Card img={img1} title={title1} price={price1} type={productType}></Card>
@@ -94,7 +94,7 @@ const Computers = () => {
                 */}
                 <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}>
                     {
-                        items.map((item, index) => (<Card key={index} price={item.price} img={item.image} title={item.title}
+                        items.map((item, index) => (<Card key={index} price={item.price} image={item.image} title={item.title}
                         type={item.type}></Card>))
                     }
                 </div>

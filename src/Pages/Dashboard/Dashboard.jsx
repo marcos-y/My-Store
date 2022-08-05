@@ -6,7 +6,7 @@ const Dashboard = () =>{
     return(
         <>
             <AppBar></AppBar>
-            <h1>Dashboard</h1>
+            <h1 style={{fontFamily:'roboto'}}>Dashboard</h1>
         </>
     )
 }

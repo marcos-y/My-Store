@@ -1,4 +1,5 @@
 import './App.css';
+import React, { useState } from 'react';
 import CreateAccount from './Pages/CreateAccount/CreateAccount';
 import Smartphones from './Pages/Smartphones/Smartphones';
 import Drones from './Pages/Drones/Drones';
@@ -14,6 +15,15 @@ import {
 } from "react-router-dom";
 
 function App() {
+
+  //TOTAL CART COST
+  sessionStorage.setItem('Total',0);
+
+  //ITEMS CART
+  const [items,setItems] = useState([{}]);
+  sessionStorage.setItem('Items',JSON.stringify(items));
+  console.log( sessionStorage.getItem('Items'));
+
   return (
     <>
     <div style={{backgroundColor:'#c4d8e5'}}>

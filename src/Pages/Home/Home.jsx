@@ -13,55 +13,55 @@ import img9 from '../../Images/new/watch3.jpg';
 
 const items = [
     {
-        title: '',
+        title: 'Smartwatch1',
         image: img1,
         price: 100,
         type: 'new release'
     },
     {
-        title: '',
+        title: 'Alienware Notebook',
         image: img2,
         price: 200,
         type: 'new release'
     },
     {
-        title: '',
+        title: 'Tablet nexus',
         image: img3,
         price: 300,
         type: 'new release'
     },
     {
-        title: '',
+        title: 'Tablet nexus2',
         image: img4,
         price: 400,
         type: 'new release'
     },
     {
-        title: '',
+        title: 'Tablet nexus3',
         image: img5,
         price: 400,
         type: 'new release'
     },
     {
-        title: '',
+        title: 'Tablet LG',
         image: img6,
         price: 500,
         type: 'new release'
     },
     {
-        title: '',
+        title: 'New table',
         image: img7,
         price: 600,
         type: 'new release'
     },
     {
-        title: '',
+        title: 'Smart watch',
         image: img8,
         price: 700,
         type: 'new release'
     },
     {
-        title: '',
+        title: 'Smart watch2',
         image: img9,
         price: 800,
         type: 'new release'
@@ -74,11 +74,11 @@ const Home = () => {
         <>
         <AppBar></AppBar>
         <div style={{display:'flex',flexDirection:'column', maxWidth:'1100px',margin:'auto',padding:'10px'}}>
-            <h1 style={{marginLeft:'20px'}}>New Items!</h1>
+            <h1 style={{marginLeft:'20px',fontFamily: 'Roboto, sans-serif'}}>New Items!</h1>
             <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}>
                     {
                         items.map((item, index) => (<Card key={index} price={item.price} 
-                        img={item.image} title={item.title} type={item.type}></Card>))
+                        image={item.image} title={item.title} type={item.type}></Card>))
                     }
                 </div>
         </div>

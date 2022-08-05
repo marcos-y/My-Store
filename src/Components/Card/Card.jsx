@@ -6,16 +6,16 @@ import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import Collapse from '@mui/material/Collapse';
-import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
+import Snackbar from '../../Components/Snackbar/Snackbar';
+import Snackbar2 from '../../Components/Snackbar2/Snackbar2';
+
+//ICONS
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import Snackbar from '../../Components/Snackbar/Snackbar';
-import Snackbar2 from '../../Components/Snackbar2/Snackbar2';
-
 import SmartphoneIcon from '@mui/icons-material/Smartphone';
 import TabletIcon from '@mui/icons-material/Tablet';
 import ComputerIcon from '@mui/icons-material/Computer';
@@ -70,24 +70,34 @@ export default function RecipeReviewCard(props) {
      setOpen2(false);
    };
 
-  //ADD PRODUCT TO CART
-  const storage = [{}];
-  const handleClickBuy = (item) =>{
+  //ADD PRODUCT and TOTAL to CART
+  const handleClickAddToCart = (item) =>{
     setOpen2(true);
-    sessionStorage.setItem('item:',JSON.stringify(item.title));
+    
+    //adding item to cart
+    let storage = JSON.parse(sessionStorage.getItem('Items'));
+    console.log('Items',storage);
+    sessionStorage.setItem('item:',JSON.stringify(item.name));
     sessionStorage.setItem('price',JSON.stringify(item.price));
-    sessionStorage.setItem('Items',storage.push(JSON.stringify(item)));
+    sessionStorage.setItem('image',JSON.stringify(item.image));
+    console.log('new item name',item.name);
+    console.log('new item price',item.price);
+    console.log('new item image',item.image);
+    storage.push(item);
+    console.log(storage);
+    sessionStorage.setItem('Items',JSON.stringify(storage));
+    
+    //adding product price to total
+    let total = JSON.parse(sessionStorage.getItem(('Total')));
+    total = total + item.price;
+    sessionStorage.setItem('Total',total);
   }
-  const title = props.title;
-  const price = props.price;
-  const description = {title,price};
 
-  //ICONS DEPENDING ON THE TYPE OF PRODUCT
-  const smartIcon = <SmartphoneIcon></SmartphoneIcon>;
-  const tabletIcon = <TabletIcon></TabletIcon>;
-  const computerIcon = <ComputerIcon></ComputerIcon>;
-  const robotIcon = <PrecisionManufacturingIcon></PrecisionManufacturingIcon>;
-  const newRelease = <NewReleasesIcon></NewReleasesIcon>;
+  //PRODUCT DETAILS
+  const image = props.image;
+  const name = props.title;
+  const price = props.price;
+  const description = {name,price,image};
   
   return (
     <Card sx={{ maxWidth: 345, marginTop: '30px', marginLeft: '20px',backgroundColor:'#e0edf4', 
@@ -105,11 +115,11 @@ export default function RecipeReviewCard(props) {
       <CardMedia
         component="img"
         height="194"
-        image={props.img}
+        image={props.image}
         alt="Gadget"
       />
       <CardContent>
-        <Typography variant="body2" color="text.secondary">
+        <Typography fontStyle='roboto' variant="body2" fontWeight='500' fontSize='12' color="text.primary">
           This impressive paella is a perfect party dish and a fun meal to cook
           together with your guests. Add 1 cup of frozen peas along with the mussels,
           if you like.
@@ -123,7 +133,7 @@ export default function RecipeReviewCard(props) {
         <IconButton onClick={handleClickSnackbar} aria-label="share">
           <ShareIcon />
         </IconButton>
-        <IconButton onClick={()=>handleClickBuy(description)}>
+        <IconButton onClick={()=>handleClickAddToCart(description)}>
           <AddShoppingCartIcon />
         </IconButton>
         <ExpandMore

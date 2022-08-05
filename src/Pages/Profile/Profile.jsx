@@ -40,8 +40,8 @@ const Profile = () => {
         <>
             <AppBar></AppBar>
             <div style={{ maxWidth: '600px', margin: 'auto', padding:'8px',marginTop:'6px',
-            backgroundColor:'white',borderRadius:'10px' }}>
-                <h1>My Profile</h1>
+            backgroundColor:'white',borderRadius:'10px',fontFamily: 'Roboto, sans-serif' }}>
+                <h1 >My Profile</h1>
                 <div style={{display:'flex', maxWidth:'500px'}}>
                     <h2>Edit profile</h2>
                     <Avatar sx={{ width: 100, height: 100}} alt="Profile" src={profileImage}>

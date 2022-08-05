@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
@@ -21,7 +21,7 @@ const style = {
     height:'100%',
     overflow:'scroll',
     display:'block',
-    marginTop:'43px',
+    marginTop:'30px',
     borderRadius:'10px',
 };
 
@@ -30,23 +30,20 @@ export default function ModalTransition(props) {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     
-    //EN ESTE MODAL TENGO QUE RECIBIR EL ARRAY DE PRODUCTOS QUE SE VAN AGREGANDO A LA CESTA - EL ARRAY DEBE SER GLOBAL
-    const [items,setItems] = useState([
-        {
-            name: 'Iphone7',
-            price:900,
-        },
-        {
-            name:'Samusmg Galaxy',
-            price:1000,
-        },
-        {
-            name:'Lg L1',
-            price:700,
-        }
-    ]);
-    sessionStorage.setItem('Items',JSON.stringify(items));
+    //EN ESTE MODAL TENGO QUE RECIBIR EL ARRAY DE PRODUCTOS QUE SE VAN AGREGANDO A LA CESTA 
+    //- EL ARRAY DEBE SER GLOBAL
+    const [items,setItems] = useState([{}]);
+    const [total,setTotal] = useState(JSON.parse(sessionStorage.getItem('Total')));
 
+    useEffect(()=>{
+        //get item list
+        setItems(JSON.parse(sessionStorage.getItem('Items')));
+        console.log('cart items:',items);
+        //get total 
+        setTotal((sessionStorage.getItem('Total')));
+        console.log('TOTAL:',total)
+    },[])
+ 
     return (
         <div>
             <Modal
@@ -73,16 +70,21 @@ export default function ModalTransition(props) {
                             Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
                         </Typography>
                         */}
-                        <h1>MY ITEMS</h1>
+                        <h1 style={{fontFamily:'roboto'}}>MY ITEMS</h1>
                         {
                             items.map((item,index)=>{
                                 return(
-                                    <Item key={index} price={item.price} name={item.name}></Item>
+                                    Object.entries(item).length === 0 ?
+                                    null
+                                    :
+                                    <Item key={index} image={item.image} price={item.price} name={item.name}></Item>
                                 )
                             })
                         }
-                        <h4>Total: $100</h4>
-                        <Button variant="contained">Buy</Button>
+                        <h4 style={{fontFamily:'roboto'}}>Total: {total}$</h4>
+                        {
+                            total == 0 ? null : (<Button variant="contained">Buy</Button>)
+                        }
                     </Box>
                 </Fade>
             </Modal>
