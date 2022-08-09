@@ -22,7 +22,6 @@ import Modal2 from '../../Components/Modal2/Modal2';
 import ModalTransition from '../../Components/ModalTransition/ModalTransition';
 import profileImage from '../../Images/ed.jpg';
 
-
 const ResponsiveAppBar = () => {
 
   const isLogged = JSON.parse(sessionStorage.getItem('isLogged'));
@@ -138,7 +137,6 @@ const ResponsiveAppBar = () => {
               variant="h5"
               noWrap
               component="a"
-              href=""
               sx={{
                 mr: 2,
                 display: { xs: 'flex', md: 'none' },
@@ -203,8 +201,8 @@ const ResponsiveAppBar = () => {
           </Toolbar>
         </Container>
       </AppBar>
-      <ModalTransition handleOpen={handleOpen} handleClose={handleClose} open={open}></ModalTransition>
-      <Modal2 handleOpen2={handleOpenModal2} handleClose2={handleCloseModal2} open2={openModal2}></Modal2>
+      <ModalTransition handleOpen={handleOpen} handleClose={handleClose} open={open}/>
+      <Modal2 handleOpen2={handleOpenModal2} handleClose2={handleCloseModal2} open2={openModal2}/>
     </>
   );
 };

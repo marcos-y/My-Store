@@ -33,7 +33,7 @@ export default function BasicModal(props) {
       >
         <Box sx={style}>
           <IconButton onClick={props.handleClose} style={{ float: 'right' }}>
-            <CloseIcon></CloseIcon>
+            <CloseIcon/>
           </IconButton>
           {/*
                 <Typography id="modal-modal-title" variant="h6" component="h2">
@@ -44,8 +44,8 @@ export default function BasicModal(props) {
                 </Typography>
             */}
           <h1>MY ITEMS</h1>
-          <Item></Item>
-          <Item></Item>
+          <Item/>
+          <Item/>
           <h4>Total: $100</h4>
           <Button variant="contained">Buy</Button>
         </Box>

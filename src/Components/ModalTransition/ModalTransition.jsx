@@ -36,13 +36,14 @@ export default function ModalTransition(props) {
     const [total,setTotal] = useState(JSON.parse(sessionStorage.getItem('Total')));
 
     useEffect(()=>{
-        //get item list
+        //1__get item list
         setItems(JSON.parse(sessionStorage.getItem('Items')));
         console.log('cart items:',items);
-        //get total 
-        setTotal((sessionStorage.getItem('Total')));
+        
+        //2__get total 
+        setTotal(JSON.parse(sessionStorage.getItem('Total')));
         console.log('TOTAL:',total)
-    },[])
+    },[props.open , total]);
  
     return (
         <div>
@@ -60,7 +61,7 @@ export default function ModalTransition(props) {
                 <Fade in={props.open}>
                     <Box sx={style}>
                         <IconButton size="small" onClick={props.handleClose} style={{ float: 'right' }}>
-                            <CloseIcon size="small"></CloseIcon>
+                            <CloseIcon size="small"/>
                         </IconButton>
                         {/*
                         <Typography id="transition-modal-title" variant="h6" component="h2">
@@ -70,14 +71,15 @@ export default function ModalTransition(props) {
                             Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
                         </Typography>
                         */}
-                        <h1 style={{fontFamily:'roboto'}}>MY ITEMS</h1>
+                        <h1 style={{fontFamily:'roboto'}}>My items</h1>
                         {
                             items.map((item,index)=>{
                                 return(
                                     Object.entries(item).length === 0 ?
                                     null
                                     :
-                                    <Item key={index} image={item.image} price={item.price} name={item.name}></Item>
+                                    <Item key={index} quantity={item.quantity} image={item.image} price={item.price} 
+                                    name={item.name}/>
                                 )
                             })
                         }

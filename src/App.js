@@ -29,22 +29,14 @@ function App() {
     <div style={{backgroundColor:'#c4d8e5'}}>
       <BrowserRouter>
         <Routes>
-            <Route path="/" element={<Home/>}>
-            </Route>
-            <Route path="/smartphones" element={<Smartphones/>}>
-            </Route>
-            <Route path="/drones" element={<Drones/>}>
-            </Route>
-            <Route path="/computers" element={<Computers/>}>
-            </Route>
-            <Route path="/create-account" element={<CreateAccount/>}>
-            </Route>
-            <Route path="/account" element={<Account/>}>
-            </Route>
-            <Route path="/dashboard" element={<Dashboard/>}>
-            </Route>
-            <Route path="/profile" element={<Profile/>}>
-            </Route>
+            <Route path="/" element={<Home/>} />
+            <Route path="/smartphones" element={<Smartphones/>} />
+            <Route path="/drones" element={<Drones/>} />
+            <Route path="/computers" element={<Computers/>} />
+            <Route path="/create-account" element={<CreateAccount/>} />
+            <Route path="/account" element={<Account/>} />
+            <Route path="/dashboard" element={<Dashboard/>} />
+            <Route path="/profile" element={<Profile/>} />
         </Routes>
       </BrowserRouter>
       </div>

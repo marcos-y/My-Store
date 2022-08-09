@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AddIcon from '@mui/icons-material/Add';
 import IconButton from '@mui/material/IconButton';
 import RemoveIcon from '@mui/icons-material/Remove';
@@ -7,20 +7,61 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 const Item = (props) => {
 
-    const [counter, setCounter] = useState(1);
+    //1__getting product list
+    const items = JSON.parse(sessionStorage.getItem('Items'));
+    console.log('items list:',items);
+    //2__finding product and getting it's quantity
+    const item = (items.find( ({name}) => name === props.name));
+    console.log('item search:',item)
+    const [counter,setCounter] = useState(item.quantity);
+    console.log('previous item quantity:',item.quantity);
+   
     const handleClickAdd = () => {
-        setCounter(counter + 1);
-        //ADDING PRODUCT QUANTITY TO TOTAL
-        let total = total + props.price;
+
+        //updating quantity
+        item.quantity = item.quantity+1;
+        console.log('NEW QUANTITY',item.quantity);
+
+        //updating list with new quantity
+        Object.assign(items,item);
+        console.log('Items list with new quantity:',items);
+        sessionStorage.setItem('Items',JSON.stringify(items));
+
+        //updating quantity number in ITEM component
+        setCounter(counter+1);
+
+        //Adding product quantity TO TOTAL
+        let total = JSON.parse(sessionStorage.getItem('Total')) + (props.price);
         console.log(total);
         sessionStorage.setItem('Total', total);
     }
+
     const handleClickSubstract = () => {
-        setCounter(counter - 1);
-        //SUBSTRACTING PRODUCT QUANTITY TO TOTAL
-        let total = total - props.price;
+
+        //updating quantity
+        item.quantity = item.quantity-1;
+        console.log('NEW QUANTITY',item.quantity);
+ 
+        //updating list with new quantity
+        Object.assign(items,item);
+        console.log('Items list with new quantity:',items);
+        sessionStorage.setItem('Items',JSON.stringify(items));
+ 
+        //updating quantity number in ITEM component
+        setCounter(counter-1);
+ 
+        //Adding product quantity TO TOTAL
+        let total = JSON.parse(sessionStorage.getItem('Total')) + (props.price * item.quantity);
         console.log(total);
         sessionStorage.setItem('Total', total);
+    }
+
+    const handleClickDelete = () => {
+        alert('Deleted!');
+        const array = JSON.parse(sessionStorage.getItem('Items'));
+        const newArray = JSON.stringify(array.filter((item) => item.name !== props.name));
+        console.log('NewArray:',newArray);
+        sessionStorage.setItem('Items',newArray);
     }
 
     return (
@@ -37,18 +78,18 @@ const Item = (props) => {
                         borderRadius: '5px', maxHeight: '60px', textAlign: 'center'
                     }}>
                         <IconButton onClick={handleClickAdd}>
-                            <AddIcon></AddIcon>
+                            <AddIcon/>
                         </IconButton>
                         <h4 style={{ marginBottom: '10px' }}>{counter}</h4>
-                        <IconButton onClick={counter >= 1 ? handleClickSubstract : null}>
-                            <RemoveIcon></RemoveIcon>
+                        <IconButton onClick={counter > 1 ? handleClickSubstract : null}>
+                            <RemoveIcon/>
                         </IconButton>
                     </div>
                     <IconButton style={{ float: 'right', height: '40px', marginRight: '10px' }}>
-                        <DeleteForeverIcon ></DeleteForeverIcon>
+                        <DeleteForeverIcon onClick={handleClickDelete}/>
                     </IconButton>
                 </div>
-                <h5>Price: ${(props.price) * counter}</h5>
+                <h5>Price: ${(props.price)}</h5>
             </div>
         </>
     )

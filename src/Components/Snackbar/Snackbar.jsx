@@ -11,9 +11,9 @@ export default function SimpleSnackbar(props) {
 
     const action = (
         <React.Fragment>
-            <WhatsAppIcon></WhatsAppIcon>
-            <InstagramIcon></InstagramIcon>
-            <FacebookIcon></FacebookIcon>
+            <WhatsAppIcon/>
+            <InstagramIcon/>
+            <FacebookIcon/>
             <IconButton
                 size="small"
                 aria-label="close"

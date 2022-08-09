@@ -31,9 +31,9 @@ const CreateAccount = () => {
 
     return (
         <>
-        <AppBar></AppBar>
+        <AppBar/>
             <div style={{display:'flex',flexDirection:'column',maxWidth:'800px',margin:'auto',
-            marginTop:'10px',borderRadius:'5px',padding:'10px',backgroundColor:'#e0edf4'}}>
+            marginTop:'17px',borderRadius:'5px',padding:'10px',backgroundColor:'#e0edf4'}}>
                 <h1 style={{fontFamily: 'Roboto, sans-serif'}}>Create a new Account</h1>
                 <TextField onChange={handleChangeFirstName} value={firstName} id="outlined-basic" label="First Name" variant="outlined" />
                 <TextField onChange={handleChangeLastName} value={lastName} style={{marginTop:'15px'}} id="outlined-basic" label="Last Name" variant="outlined" />
@@ -42,8 +42,9 @@ const CreateAccount = () => {
                 <TextField onChange={handleChangePassword} value={password} style={{marginTop:'15px'}} id="outlined-basic" label="Password" variant="outlined" />
                 <TextField onChange={handleChangeConfirmPassword} value={confirmPassword} style={{marginTop:'15px'}} id="outlined-basic" label="Confirm Password" variant="outlined" />
                 <Button onClick={handleClick} style={{marginTop:'10px',float:'left',width:'30px'}} variant="contained">Submit</Button>
-                <h1></h1>
             </div>
+            <br></br>
+            <br></br>
         </>
     )
 }

@@ -70,10 +70,10 @@ export default function BasicModal(props) {
         <Box sx={style}>
           <div style={{ backgroundColor: 'white', padding: '10px', borderRadius: '8px' }}>
             <IconButton onClick={props.handleClose2} style={{ float: 'right' }}>
-              <CloseIcon></CloseIcon>
+              <CloseIcon/>
             </IconButton>
             <ThemeProvider theme={theme}>
-              <Typography id="modal-modal-title" variant="h6" >
+              <Typography id="modal-modal-title" variant="h4" >
                 Log In
               </Typography>
             </ThemeProvider>

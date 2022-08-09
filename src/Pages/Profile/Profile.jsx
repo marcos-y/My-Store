@@ -38,14 +38,13 @@ const Profile = () => {
 
     return (
         <>
-            <AppBar></AppBar>
+            <AppBar/>
             <div style={{ maxWidth: '600px', margin: 'auto', padding:'8px',marginTop:'6px',
             backgroundColor:'white',borderRadius:'10px',fontFamily: 'Roboto, sans-serif' }}>
                 <h1 >My Profile</h1>
                 <div style={{display:'flex', maxWidth:'500px'}}>
                     <h2>Edit profile</h2>
-                    <Avatar sx={{ width: 100, height: 100}} alt="Profile" src={profileImage}>
-                    </Avatar>
+                    <Avatar sx={{ width: 100, height: 100}} alt="Profile" src={profileImage} />
                 </div>
                 <div style={{display:'flex',marginTop:'30px'}}>
                     <TextField value={firstName} onChange={handleChangeFirstName} id="outlined-basic1" label="First name" variant="outlined" />
@@ -63,7 +62,7 @@ const Profile = () => {
                     <TextField value={zipCode} onChange={handleChangeZipCode} id="outlined-basic6" label="Zip Code" variant="outlined" />
                     <TextField value={country} onChange={handleChangeCountry} style={{marginLeft:'30px'}} id="outlined-basic7" label="Country" variant="outlined" />
                 </div>
-                <TextfieldPassword width={'100%'}></TextfieldPassword>
+                <TextfieldPassword width={'100%'} />
                 <Button onClick={handleClick} style={{marginTop:'10px'}} variant="contained">Save</Button>
             </div>
         </>

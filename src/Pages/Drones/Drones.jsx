@@ -67,13 +67,13 @@ const Drones = () => {
 
     return (
         <>
-            <AppBar></AppBar>
+            <AppBar/>
             <div style={{ display: 'flex', flexDirection: 'column', maxWidth: '1100px', margin: 'auto', padding: '10px' }}>
                 <h1 style={{ marginLeft: '20px',fontFamily: 'Roboto, sans-serif' }}>Drones</h1>
                 <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}>
                     {
                         items.map((item, index) => (<Card key={index} price={item.price} 
-                        image={item.image} title={item.title} type={item.type}></Card>))
+                        image={item.image} title={item.title} type={item.type}/>))
                     }
                 </div>
             </div>
