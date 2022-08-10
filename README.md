@@ -1,3 +1,8 @@
+# Install the follow dependencies:
+1_ npm install @mui/material @emotion/react @emotion/styled
+2_ npm install @mui/icons-material
+3_ npm install react-router-dom@6
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
