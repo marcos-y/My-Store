@@ -48,7 +48,7 @@ const Profile = () => {
                 </div>
                 <div style={{display:'flex',marginTop:'30px'}}>
                     <TextField value={firstName} onChange={handleChangeFirstName} id="outlined-basic1" label="First name" variant="outlined" />
-                    <TextField value={lastName} onChange={handleChangeLastName} style={{marginLeft:'30px'}} id="outlined-basic" label="Last name" variant="outlined" />
+                    <TextField value={lastName} onChange={handleChangeLastName} style={{marginLeft:'30px'}} id="outlined-basic10" label="Last name" variant="outlined" />
                 </div>
                 <TextField value={email} onChange={handleChangeEmail} style={{width:'475px',marginTop:'30px'}} id="outlined-basic2" label="Email" variant="outlined" />
                 <TextField value={adress} onChange={handleChangeAdress} style={{width:'475px',marginTop:'30px'}} id="outlined-basic3" label="Address" variant="outlined" />
@@ -56,11 +56,11 @@ const Profile = () => {
                 <div style={{display:'flex',marginTop:'30px'}}></div>
                 <div style={{display:'flex',marginTop:'30px'}}>
                     <TextField value={city} onChange={handleChangeCity} id="outlined-basic5" label="City" variant="outlined" />
-                    <TextField value={state} onChange={handleChangeState} style={{marginLeft:'30px'}} id="outlined-basic" label="State" variant="outlined" />
+                    <TextField value={state} onChange={handleChangeState} style={{marginLeft:'30px'}} id="outlined-basic6" label="State" variant="outlined" />
                 </div>
                 <div style={{display:'flex',marginTop:'30px'}}>
-                    <TextField value={zipCode} onChange={handleChangeZipCode} id="outlined-basic6" label="Zip Code" variant="outlined" />
-                    <TextField value={country} onChange={handleChangeCountry} style={{marginLeft:'30px'}} id="outlined-basic7" label="Country" variant="outlined" />
+                    <TextField value={zipCode} onChange={handleChangeZipCode} id="outlined-basic7" label="Zip Code" variant="outlined" />
+                    <TextField value={country} onChange={handleChangeCountry} style={{marginLeft:'30px'}} id="outlined-basic8" label="Country" variant="outlined" />
                 </div>
                 <TextfieldPassword width={'100%'} />
                 <Button onClick={handleClick} style={{marginTop:'10px'}} variant="contained">Save</Button>

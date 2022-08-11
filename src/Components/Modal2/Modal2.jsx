@@ -70,7 +70,7 @@ export default function BasicModal(props) {
         <Box sx={style}>
           <div style={{ backgroundColor: 'white', padding: '10px', borderRadius: '8px' }}>
             <IconButton onClick={props.handleClose2} style={{ float: 'right' }}>
-              <CloseIcon/>
+              <CloseIcon />
             </IconButton>
             <ThemeProvider theme={theme}>
               <Typography id="modal-modal-title" variant="h4" >
@@ -78,10 +78,13 @@ export default function BasicModal(props) {
               </Typography>
             </ThemeProvider>
             <TextField onChange={handleChangeEmail} value={email} style={{ marginTop: '15px' }}
-              id="outlined-basic" label="Email" variant="outlined" />
-
+              id="outlined-basic1" label="Email" variant="outlined" />
             <TextField onChange={handleChangePassword} value={password} style={{ marginTop: '15px' }}
-              id="outlined-basic" label="Password" variant="outlined" />
+              id="outlined-password-input"
+              label="Password"
+              type="password"
+              autoComplete="current-password"
+            />
             {/*
             <TextfieldPassword password={password}></TextfieldPassword>
             */}

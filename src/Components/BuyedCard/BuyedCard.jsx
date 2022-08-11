@@ -8,14 +8,9 @@ import CardActions from '@mui/material/CardActions';
 import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import Snackbar from '../../Components/Snackbar/Snackbar';
-import Snackbar2 from '../../Components/Snackbar2/Snackbar2';
 
 //ICONS
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import SmartphoneIcon from '@mui/icons-material/Smartphone';
 import TabletIcon from '@mui/icons-material/Tablet';
 import ComputerIcon from '@mui/icons-material/Computer';
@@ -33,74 +28,12 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function RecipeReviewCard(props) {
+export default function BuyedCard(props) {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-
-  //CHANGE LIKE COLOR
-  const [color, setColor] = useState(null);
-  const handleClickColor = () => {
-    setColor('#f44336');
-  }
-
-  //OPEN AND CLOSE SNACKBAR
-  const [open, setOpen] = React.useState(false);
-  const handleClickSnackbar = () => {
-    setOpen(true);
-  };
-  const handleCloseSnackbar = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-    setOpen(false);
-  };
-
-  //OPEN AND CLOSE SNACKBAR2
-  const [open2, setOpen2] = React.useState(false);
-  const handleClickSnackbar2 = () => {
-    setOpen2(true);
-  };
-  const handleCloseSnackbar2 = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-    setOpen2(false);
-  };
-
-  //PRODUCT DETAILS
-  const image = props.image;
-  const name = props.title;
-  const price = props.price;
-  const type = props.type;
-  const quantity = 1;
-  const description = { name, price, image, quantity, type };
-
-  //ADD PRODUCT and TOTAL to CART
-  const handleClickAddToCart = (item) => {
-    setOpen2(true);
-
-    let storage = JSON.parse(sessionStorage.getItem('Items'));
-    //console.log('Items', storage);
-    sessionStorage.setItem('item:', JSON.stringify(item.name));
-    sessionStorage.setItem('price', JSON.stringify(item.price));
-    sessionStorage.setItem('image', JSON.stringify(item.image));
-    sessionStorage.setItem('type', JSON.stringify(item.type));
-    //console.log('new item name', item.name);
-    //console.log('new item price', item.price);
-    //console.log('new item image', item.image);
-    //console.log('new item quantity:', item.quantity);
-    storage.push(item);
-    //console.log(storage);
-    sessionStorage.setItem('Items', JSON.stringify(storage));
-    //adding product price to total
-    let total = JSON.parse(sessionStorage.getItem(('Total')));
-    total = total + item.price;
-    sessionStorage.setItem('Total', total);
-  }
-
 
   return (
     <Card sx={{
@@ -130,19 +63,11 @@ export default function RecipeReviewCard(props) {
           This impressive paella is a perfect party dish and a fun meal to cook
           together with your guests. Add 1 cup of frozen peas along with the mussels,
           if you like.
-          Price: ${props.price}
         </Typography>
+        <Typography ontStyle='roboto' variant="body2" fontWeight='500' fontSize='12' color="text.primary">Price: ${props.price}</Typography>
+        <Typography ontStyle='roboto' variant="body2" fontWeight='500' fontSize='12' color="text.primary">Quantity: {props.quantity}</Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton onClick={handleClickColor} aria-label="add to favorites">
-          <FavoriteIcon style={{ color: color }} />
-        </IconButton>
-        <IconButton onClick={handleClickSnackbar} aria-label="share">
-          <ShareIcon />
-        </IconButton>
-        <IconButton onClick={() => handleClickAddToCart(description)}>
-          <AddShoppingCartIcon />
-        </IconButton>
         <ExpandMore
           expand={expanded}
           onClick={handleExpandClick}
@@ -167,8 +92,6 @@ export default function RecipeReviewCard(props) {
           </Typography>
         </CardContent>
       </Collapse>
-      <Snackbar open={open} handleClose={handleCloseSnackbar} />
-      <Snackbar2 open2={open2} handleClose2={handleCloseSnackbar2} />
     </Card>
   );
 }

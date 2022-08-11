@@ -29,21 +29,39 @@ export default function ModalTransition(props) {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+
+    const [click,setClick] = useState(0);
+    const handleClick = () => setClick(click+1);
+
+    //Buy button
+    const handleClickBuy = () =>{
+        const isLogged = (sessionStorage.getItem('isLogged'));
+        console.log(isLogged);
+        if(isLogged==='true'){
+            alert('buyed');
+            const myShopping = (JSON.parse(sessionStorage.getItem('Items')));
+            console.log('my Shopping:',myShopping);
+            sessionStorage.setItem('myShopping',JSON.stringify(myShopping));
+        }
+        else{
+            alert('Please Login before shopping');
+        }
+    }
     
     //EN ESTE MODAL TENGO QUE RECIBIR EL ARRAY DE PRODUCTOS QUE SE VAN AGREGANDO A LA CESTA 
     //- EL ARRAY DEBE SER GLOBAL
     const [items,setItems] = useState([{}]);
-    const [total,setTotal] = useState(JSON.parse(sessionStorage.getItem('Total')));
+    const [total,setTotal] = useState(0);
 
     useEffect(()=>{
         //1__get item list
         setItems(JSON.parse(sessionStorage.getItem('Items')));
-        console.log('cart items:',items);
+        //console.log('cart items:',items);
         
         //2__get total 
         setTotal(JSON.parse(sessionStorage.getItem('Total')));
-        console.log('TOTAL:',total)
-    },[props.open , total]);
+        //console.log('TOTAL:',total);
+    },[props.open, click]);
  
     return (
         <div>
@@ -79,13 +97,13 @@ export default function ModalTransition(props) {
                                     null
                                     :
                                     <Item key={index} quantity={item.quantity} image={item.image} price={item.price} 
-                                    name={item.name}/>
+                                    name={item.name} handleClick={handleClick} />
                                 )
                             })
                         }
                         <h4 style={{fontFamily:'roboto'}}>Total: {total}$</h4>
                         {
-                            total == 0 ? null : (<Button variant="contained">Buy</Button>)
+                            total == 0 ? null : (<Button onClick={handleClickBuy} variant="contained">Buy</Button>)
                         }
                     </Box>
                 </Fade>
