@@ -90,12 +90,14 @@ export default function RecipeReviewCard(props) {
     console.log('searchItem', searchItem);
 
     //--> In case it's been already added
-    if ( (searchItem !== undefined) && (searchItem.name === item.name) ) {
+    if ( (searchItem !== undefined) && (searchItem.name === item.name) ) 
+    {
       alert('Product already added to cart!');
       setOpen2(false);
     }
     //--> In case it's not in the array
-    if (searchItem===undefined){
+    if (searchItem===undefined)
+    {
        //console.log('Items', storage);
        sessionStorage.setItem('item:', JSON.stringify(item.name));
        sessionStorage.setItem('price', JSON.stringify(item.price));

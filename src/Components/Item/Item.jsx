@@ -13,21 +13,11 @@ const Item = (props) => {
     //console.log('items list:', items);
     //2__finding product and getting it's quantity
     const item = (items.find(({ name }) => name === props.name));
+    const number = (item === undefined) ? 0 : item.quantity;
     //console.log('item search:', item);
     //console.log('previous item quantity:', item.quantity);
-    const [counter, setCounter] = useState(item.quantity);
 
-    const checkType = () =>{
-        //console.log('checktype',item.quantity);
-        if(item.quantity === undefined)
-        {
-            console.log('IS UNDEFINED');
-        }
-    }
-    
-    useEffect(()=>{
-        checkType()
-    })
+    const [counter, setCounter] = useState(number);
 
     const handleClickAdd = () => {
 
@@ -81,6 +71,9 @@ const Item = (props) => {
         const newArray = JSON.stringify(array.filter((item) => item.name !== props.name));
         console.log('NewArray:', newArray);
         sessionStorage.setItem('Items', newArray);
+        const total = JSON.parse(sessionStorage.getItem('Total')) - props.price ;
+        console.log('TOTal deleted',total);
+        sessionStorage.setItem('Total',total);
     }
 
     return (
