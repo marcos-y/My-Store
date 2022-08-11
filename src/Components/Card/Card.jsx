@@ -46,7 +46,7 @@ export default function RecipeReviewCard(props) {
     setColor('#f44336');
   }
 
-  //OPEN AND CLOSE SNACKBAR
+  //OPEN AND CLOSE SNACKBAR1
   const [open, setOpen] = React.useState(false);
   const handleClickSnackbar = () => {
     setOpen(true);
@@ -82,25 +82,38 @@ export default function RecipeReviewCard(props) {
   const handleClickAddToCart = (item) => {
     setOpen2(true);
 
+    //Get Item list
     let storage = JSON.parse(sessionStorage.getItem('Items'));
-    //console.log('Items', storage);
-    sessionStorage.setItem('item:', JSON.stringify(item.name));
-    sessionStorage.setItem('price', JSON.stringify(item.price));
-    sessionStorage.setItem('image', JSON.stringify(item.image));
-    sessionStorage.setItem('type', JSON.stringify(item.type));
-    //console.log('new item name', item.name);
-    //console.log('new item price', item.price);
-    //console.log('new item image', item.image);
-    //console.log('new item quantity:', item.quantity);
-    storage.push(item);
-    //console.log(storage);
-    sessionStorage.setItem('Items', JSON.stringify(storage));
-    //adding product price to total
-    let total = JSON.parse(sessionStorage.getItem(('Total')));
-    total = total + item.price;
-    sessionStorage.setItem('Total', total);
-  }
 
+    //Search if the product has already been added to Array
+    const searchItem = (storage.find(({ name }) => name === item.name));
+    console.log('searchItem', searchItem);
+
+    //--> In case it's been already added
+    if ( (searchItem !== undefined) && (searchItem.name === item.name) ) {
+      alert('Product already added to cart!');
+      setOpen2(false);
+    }
+    //--> In case it's not in the array
+    if (searchItem===undefined){
+       //console.log('Items', storage);
+       sessionStorage.setItem('item:', JSON.stringify(item.name));
+       sessionStorage.setItem('price', JSON.stringify(item.price));
+       sessionStorage.setItem('image', JSON.stringify(item.image));
+       sessionStorage.setItem('type', JSON.stringify(item.type));
+       //console.log('new item name', item.name);
+       //console.log('new item price', item.price);
+       //console.log('new item image', item.image);
+       //console.log('new item quantity:', item.quantity);
+       storage.push(item);
+       sessionStorage.setItem('Items', JSON.stringify(storage));
+       //console.log(storage);
+       //adding product price to total
+       let total = JSON.parse(sessionStorage.getItem(('Total')));
+       total = total + item.price;
+       sessionStorage.setItem('Total', total);
+    }
+  }
 
   return (
     <Card sx={{
