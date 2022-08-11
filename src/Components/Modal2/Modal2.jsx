@@ -78,9 +78,9 @@ export default function BasicModal(props) {
               </Typography>
             </ThemeProvider>
             <TextField onChange={handleChangeEmail} value={email} style={{ marginTop: '15px' }}
-              id="outlined-basic1" label="Email" variant="outlined" />
+              id="outlined-basic11" label="Email" variant="outlined" />
             <TextField onChange={handleChangePassword} value={password} style={{ marginTop: '15px' }}
-              id="outlined-password-input"
+              id="outlined-password-input5"
               label="Password"
               type="password"
               autoComplete="current-password"

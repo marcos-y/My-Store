@@ -15,7 +15,7 @@ const Dashboard = () =>{
 
     //Receive from the database
     const items = (JSON.parse(sessionStorage.getItem('myShopping')));
-    console.log('Items:',items);
+    console.log('Buyed Items:',items);
 
     return(
         <>
@@ -24,13 +24,15 @@ const Dashboard = () =>{
                 <h1 style={{ marginLeft: '20px',fontFamily: 'Roboto, sans-serif' }}>My Latest Shopping</h1>
                 <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}>
                     {
+                        items == 'null' ?
+                        null
+                        :
+                        (
                         items.map((item, index) => ( 
-                            Object.entries(item).length === 0 ?
-                            null
-                            :
                             <BuyedCard key={index} price={item.price} image={item.image} quantity={item.quantity} 
                             title={item.name} type={item.type}/>
                         ))
+                        )
                     }
                 </div>
             </div>

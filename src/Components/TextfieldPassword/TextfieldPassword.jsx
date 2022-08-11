@@ -34,7 +34,7 @@ export default function InputAdornments(props) {
 
     return (
         <Box sx={{ width:'100%', display: 'flex', flexWrap: 'wrap', marginTop:'20px' }}>
-          <div>
+          <div style={{width:'100%'}}>
           <FormControl sx={{  width: '100%' }} variant="outlined">
           <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
           <OutlinedInput

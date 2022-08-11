@@ -69,10 +69,10 @@ const Item = (props) => {
         alert('Deleted!');
         const array = JSON.parse(sessionStorage.getItem('Items'));
         const newArray = JSON.stringify(array.filter((item) => item.name !== props.name));
-        console.log('NewArray:', newArray);
+        //console.log('NewArray:', newArray);
         sessionStorage.setItem('Items', newArray);
         const total = JSON.parse(sessionStorage.getItem('Total')) - props.price ;
-        console.log('TOTal deleted',total);
+        //console.log('TOTal deleted',total);
         sessionStorage.setItem('Total',total);
     }
 
