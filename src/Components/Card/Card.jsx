@@ -8,8 +8,8 @@ import CardActions from '@mui/material/CardActions';
 import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import Snackbar from '../../Components/Snackbar/Snackbar';
-import Snackbar2 from '../../Components/Snackbar2/Snackbar2';
+import SnackbarShare from '../../Components/SnackbarShare/SnackbarShare';
+import SnackbarAdded from '../../Components/SnackbarAdded/SnackbarAdded';
 
 //ICONS
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -182,8 +182,8 @@ export default function RecipeReviewCard(props) {
           </Typography>
         </CardContent>
       </Collapse>
-      <Snackbar open={open} handleClose={handleCloseSnackbar} />
-      <Snackbar2 open2={open2} handleClose2={handleCloseSnackbar2} />
+      <SnackbarAdded open2={open2} handleClose2={handleCloseSnackbar2} />
+      <SnackbarShare open={open} handleClose={handleCloseSnackbar} />
     </Card>
   );
 }

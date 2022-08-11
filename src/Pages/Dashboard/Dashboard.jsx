@@ -24,7 +24,7 @@ const Dashboard = () =>{
                 <h1 style={{ marginLeft: '20px',fontFamily: 'Roboto, sans-serif' }}>My Latest Shopping</h1>
                 <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}>
                     {
-                        items == 'null' ?
+                        items == null ?
                         null
                         :
                         (

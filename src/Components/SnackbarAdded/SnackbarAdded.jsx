@@ -3,22 +3,15 @@ import Snackbar from '@mui/material/Snackbar';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 
-import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import InstagramIcon from '@mui/icons-material/Instagram';
-
-export default function SimpleSnackbar(props) {
+export default function SnackbarAdded(props) {
 
     const action = (
         <React.Fragment>
-            <WhatsAppIcon/>
-            <InstagramIcon/>
-            <FacebookIcon/>
             <IconButton
                 size="small"
                 aria-label="close"
                 color="inherit"
-                onClick={props.handleClose}
+                onClick={props.handleClose2}
             >
                 <CloseIcon fontSize="small" />
             </IconButton>
@@ -28,10 +21,10 @@ export default function SimpleSnackbar(props) {
     return (
         <div>
             <Snackbar
-                open={props.open}
+                open={props.open2}
                 autoHideDuration={3000}
-                onClose={props.handleClose}
-                message="Share:"
+                onClose={props.handleClose2}
+                message="Product added to Cart!"
                 action={action}
             />
         </div>

@@ -26,7 +26,7 @@ function App() {
 
   return (
     <>
-    <div style={{backgroundColor:'#c4d8e5',height:'100%',position:'relative'}}>
+    <div style={{maxWidth:'100%',height:'auto',height:'100%',backgroundColor:'#c4d8e5'}}>
       <BrowserRouter>
         <Routes>
             <Route path="/" element={<Home/>} />

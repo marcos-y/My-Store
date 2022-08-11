@@ -49,7 +49,7 @@ const items = [
         type: 'new release'
     },
     {
-        title: 'New table',
+        title: 'New tablet',
         image: img7,
         price: 600,
         type: 'new release'

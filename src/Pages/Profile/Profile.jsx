@@ -69,6 +69,7 @@ const Profile = () => {
                     <Button onClick={handleClick} style={{ marginTop: '10px' }} variant="contained">Save</Button>
                 </div>
             </div>
+            <br></br>
         </>
     )
 }

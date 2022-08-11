@@ -18,8 +18,8 @@ import {
   Link,
   useNavigate
 } from "react-router-dom";
-import Modal2 from '../../Components/Modal2/Modal2';
-import ModalTransition from '../../Components/ModalTransition/ModalTransition';
+import ModalLogin from '../../Components/ModalLogin/ModalLogin';
+import ModalCart from '../../Components/ModalCart/ModalCart';
 import profileImage from '../../Images/ed.jpg';
 
 const ResponsiveAppBar = () => {
@@ -47,13 +47,13 @@ const ResponsiveAppBar = () => {
     setAnchorElUser(null);
   };
 
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const [openModalCart, setOpenModalCart] = React.useState(false);
+  const handleOpenModalCart = () => setOpenModalCart(true);
+  const handleCloseModalCart = () => setOpenModalCart(false);
 
-  const [openModal2, setOpenModal2] = React.useState(false);
-  const handleOpenModal2 = () => setOpenModal2(true);
-  const handleCloseModal2 = () => setOpenModal2(false);
+  const [openModalLogin, setOpenModalLogin] = React.useState(false);
+  const handleOpenModalLogin = () => setOpenModalLogin(true);
+  const handleCloseModalLogin = () => setOpenModalLogin(false);
 
 
   let navigate = useNavigate();
@@ -164,11 +164,11 @@ const ResponsiveAppBar = () => {
             </Box>
 
             <Box sx={{ flexGrow: 0 }}>
-              <IconButton onClick={handleOpen}>
+              <IconButton onClick={handleOpenModalCart}>
                 <ShoppingCartIcon fontSize="large"></ShoppingCartIcon>
               </IconButton>
               <Tooltip title="Login">
-                <IconButton onClick={isLogged ? handleOpenUserMenu : handleOpenModal2} sx={{ p: 0 }}>
+                <IconButton onClick={isLogged ? handleOpenUserMenu : handleOpenModalLogin} sx={{ p: 0 }}>
                   <Avatar alt="Remy Sharp" src={isLogged ? profileImage : icon} />
                 </IconButton>
               </Tooltip>
@@ -201,8 +201,8 @@ const ResponsiveAppBar = () => {
           </Toolbar>
         </Container>
       </AppBar>
-      <ModalTransition handleOpen={handleOpen} handleClose={handleClose} open={open}/>
-      <Modal2 handleOpen2={handleOpenModal2} handleClose2={handleCloseModal2} open2={openModal2}/>
+      <ModalCart handleOpen={handleOpenModalCart} handleClose={handleCloseModalCart} open={openModalCart}/>
+      <ModalLogin handleOpen2={handleOpenModalLogin} handleClose2={handleCloseModalLogin} open2={openModalLogin}/>
     </>
   );
 };
