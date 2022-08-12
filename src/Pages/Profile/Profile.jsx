@@ -5,6 +5,7 @@ import profileImage from '../../Images/ed.jpg';
 import TextField from '@mui/material/TextField';
 import TextfieldPassword from '../../Components/TextfieldPassword/TextfieldPassword';
 import Button from '@mui/material/Button';
+import UploadButton from '../../Components/UploadButton/UploadButton';
 
 const Profile = () => {
 
@@ -44,11 +45,11 @@ const Profile = () => {
                 backgroundColor: 'white', borderRadius: '10px', fontFamily: 'Roboto, sans-serif'
             }}>
                 <div style={{margin:'auto',padding:'30px'}}>
-                    <h1 >My Profile</h1>
+                    <h1 >Edit my profile</h1>
                     <div style={{ display: 'flex', maxWidth: '500px' }}>
-                        <h2>Edit profile</h2>
                         <Avatar sx={{ width: 100, height: 100 }} alt="Profile" src={profileImage} />
                     </div>
+                    <UploadButton></UploadButton>
                     <div style={{ display: 'flex', marginTop: '30px' }}>
                         <TextField value={firstName} onChange={handleChangeFirstName} id="outlined-basic1" label="First name" variant="outlined" />
                         <TextField value={lastName} onChange={handleChangeLastName} style={{ marginLeft: '30px',width:'100%'}} id="outlined-basic10" label="Last name" variant="outlined" />

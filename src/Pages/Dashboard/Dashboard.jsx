@@ -20,9 +20,9 @@ const Dashboard = () =>{
     return(
         <>
             <AppBar/>
-            <div style={{ display: 'flex', flexDirection: 'column', maxWidth: '1100px', margin: 'auto', padding: '10px' }}>
-                <h1 style={{ marginLeft: '20px',fontFamily: 'Roboto, sans-serif' }}>My Latest Shopping</h1>
-                <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <div style={{width:'100%',backgroundColor:'#c4d8e5', display: 'flex', flexDirection: 'column', margin: 'auto' }}>
+                <h1 style={{ marginTop:'40px',marginLeft: '140px',fontFamily: 'Roboto, sans-serif' }}>My Latest Shopping</h1>
+                <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap',marginBottom:'20px' }}>
                     {
                         items == null ?
                         null

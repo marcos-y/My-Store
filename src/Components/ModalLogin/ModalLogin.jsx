@@ -8,6 +8,9 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import TextfieldPassword from '../TextfieldPassword/TextfieldPassword';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import {
+  Link
+} from "react-router-dom";
 
 const theme = createTheme({
   typography: {
@@ -49,10 +52,12 @@ export default function BasicModal(props) {
     if ((email == 'marcos@gmail') && (password == 123)) {
       setIsLogged(true);
       sessionStorage.setItem('isLogged', true);
+      setEmail('');
+      setPassword('');
+      props.handleClose2();
+    }else{
+      alert('Wrong user or password');
     }
-    setEmail('');
-    setPassword('');
-    props.handleClose2();
   }
 
   const handleClickLogout = () => {
@@ -92,6 +97,7 @@ export default function BasicModal(props) {
               Submit
             </Button>
           </div>
+          <Link style={{textDecoration:'none',marginTop:'15px',float:'right'}} to="">Forgot my password?</Link>
         </Box>
       </Modal>
     </div>
