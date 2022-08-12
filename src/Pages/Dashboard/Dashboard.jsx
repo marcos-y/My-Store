@@ -1,6 +1,10 @@
 import React from 'react';
+
+//COMPONENTS
 import AppBar from '../../Components/AppBar/AppBar';
 import BuyedCard from '../../Components/BuyedCard/BuyedCard';
+
+//IMAGES
 import img1 from '../../Images/drones/dron1.jpg';
 import img2 from '../../Images/drones/dron2.jpg';
 import img3 from '../../Images/drones/dron3.png';
@@ -13,7 +17,7 @@ import img9 from '../../Images/drones/dron9.png';
 
 const Dashboard = () =>{
 
-    //Receive from the database
+    //Receive items from the database
     const items = (JSON.parse(sessionStorage.getItem('myShopping')));
     console.log('Buyed Items:',items);
 

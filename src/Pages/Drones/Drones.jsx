@@ -1,6 +1,10 @@
 import React from 'react';
+
+//COMPONENTS
 import AppBar from '../../Components/AppBar/AppBar';
 import Card from '../../Components/Card/Card';
+
+//IMAGES
 import img1 from '../../Images/drones/dron1.jpg';
 import img2 from '../../Images/drones/dron2.jpg';
 import img3 from '../../Images/drones/dron3.png';

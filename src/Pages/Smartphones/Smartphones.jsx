@@ -1,6 +1,10 @@
 import React from 'react';
+
+//COMPONENTS
 import AppBar from '../../Components/AppBar/AppBar';
 import Card from '../../Components/Card/Card';
+
+//IMAGES
 import img1 from '../../Images/cellphones/iphone1.jpg';
 import img2 from '../../Images/cellphones/iphone2.jpg';
 import img3 from '../../Images/cellphones/iphone3.jpg';

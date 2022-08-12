@@ -1,6 +1,10 @@
 import React from 'react';
+
+//COMPONENTS
 import Card from '../../Components/Card/Card';
 import AppBar from '../../Components/AppBar/AppBar';
+
+//IMAGES
 import img1 from '../../Images/new/watch1.jpg';
 import img2 from '../../Images/new/gamer.jpg';
 import img3 from '../../Images/new/tablet1.jpg';

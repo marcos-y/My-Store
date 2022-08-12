@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+
+//COMPONENTS
 import AppBar from '../../Components/AppBar/AppBar';
 import Avatar from '@mui/material/Avatar';
 import profileImage from '../../Images/ed.jpg';

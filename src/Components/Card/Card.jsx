@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { styled } from '@mui/material/styles';
+
+//COMPONENTS
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
@@ -22,6 +24,10 @@ import ComputerIcon from '@mui/icons-material/Computer';
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
 import NewReleasesIcon from '@mui/icons-material/NewReleases';
 
+//THEME PROVIDER
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
@@ -32,6 +38,15 @@ const ExpandMore = styled((props) => {
     duration: theme.transitions.duration.shortest,
   }),
 }));
+
+const theme = createTheme({
+  typography: {
+    color: 'black',
+    fontFamily: 'Roboto, sans-serif',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+});
 
 export default function RecipeReviewCard(props) {
   const [expanded, setExpanded] = React.useState(false);
@@ -90,30 +105,28 @@ export default function RecipeReviewCard(props) {
     console.log('searchItem', searchItem);
 
     //--> In case it's been already added
-    if ( (searchItem !== undefined) && (searchItem.name === item.name) ) 
-    {
+    if ((searchItem !== undefined) && (searchItem.name === item.name)) {
       alert('Product already added to cart!');
       setOpen2(false);
     }
     //--> In case it's not in the array
-    if (searchItem===undefined)
-    {
-       //console.log('Items', storage);
-       sessionStorage.setItem('item:', JSON.stringify(item.name));
-       sessionStorage.setItem('price', JSON.stringify(item.price));
-       sessionStorage.setItem('image', JSON.stringify(item.image));
-       sessionStorage.setItem('type', JSON.stringify(item.type));
-       //console.log('new item name', item.name);
-       //console.log('new item price', item.price);
-       //console.log('new item image', item.image);
-       //console.log('new item quantity:', item.quantity);
-       storage.push(item);
-       sessionStorage.setItem('Items', JSON.stringify(storage));
-       //console.log(storage);
-       //adding product price to total
-       let total = JSON.parse(sessionStorage.getItem(('Total')));
-       total = total + item.price;
-       sessionStorage.setItem('Total', total);
+    if (searchItem === undefined) {
+      //console.log('Items', storage);
+      sessionStorage.setItem('item:', JSON.stringify(item.name));
+      sessionStorage.setItem('price', JSON.stringify(item.price));
+      sessionStorage.setItem('image', JSON.stringify(item.image));
+      sessionStorage.setItem('type', JSON.stringify(item.type));
+      //console.log('new item name', item.name);
+      //console.log('new item price', item.price);
+      //console.log('new item image', item.image);
+      //console.log('new item quantity:', item.quantity);
+      storage.push(item);
+      sessionStorage.setItem('Items', JSON.stringify(storage));
+      //console.log(storage);
+      //adding product price to total
+      let total = JSON.parse(sessionStorage.getItem(('Total')));
+      total = total + item.price;
+      sessionStorage.setItem('Total', total);
     }
   }
 
@@ -141,12 +154,14 @@ export default function RecipeReviewCard(props) {
         alt="Gadget"
       />
       <CardContent>
-        <Typography fontStyle='roboto' variant="body2" fontWeight='500' fontSize='12' color="text.primary">
-          This impressive paella is a perfect party dish and a fun meal to cook
-          together with your guests. Add 1 cup of frozen peas along with the mussels,
-          if you like.
-          Price: ${props.price}
-        </Typography>
+        <ThemeProvider theme={theme}>
+          <Typography>
+            This impressive paella is a perfect party dish and a fun meal to cook
+            together with your guests. Add 1 cup of frozen peas along with the mussels,
+            if you like.
+            Price: ${props.price}
+          </Typography>
+        </ThemeProvider>
       </CardContent>
       <CardActions disableSpacing>
         <IconButton onClick={handleClickColor} aria-label="add to favorites">
