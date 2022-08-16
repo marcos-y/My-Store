@@ -97,7 +97,7 @@ export default function BasicModal(props) {
               Submit
             </Button>
           </div>
-          <Link style={{textDecoration:'none',marginTop:'15px',float:'right'}} to="">Forgot my password?</Link>
+          <Link style={{textDecoration:'none',marginTop:'15px',float:'right',color:'blue'}} to="">Forgot my password?</Link>
         </Box>
       </Modal>
     </div>

@@ -156,9 +156,7 @@ export default function RecipeReviewCard(props) {
       <CardContent>
         <ThemeProvider theme={theme}>
           <Typography>
-            This impressive paella is a perfect party dish and a fun meal to cook
-            together with your guests. Add 1 cup of frozen peas along with the mussels,
-            if you like.
+            {props.description}
             Price: ${props.price}
           </Typography>
         </ThemeProvider>
@@ -184,16 +182,17 @@ export default function RecipeReviewCard(props) {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph>Specs:</Typography>
+          <Typography paragraph>About this item:</Typography>
           <Typography paragraph>
-            <li>Windows 11 Home - ASUS recommends Windows 11 Pro for business</li>
-            <li>12th Intel® Core™ i5 processor</li>
-            <li>8 GB memory</li>
-            <li>512 GB SSD storage</li>
-            <li>14'' 3-sided NanoEdge display</li>
-            <li>360° hinge convertible laptop</li>
-            <li>Optional ASUS Pen2.0 support</li>
-            <li>WiFi 6 (802.11ax)</li>
+            {
+              props.specs.map((spec) => {
+                return (
+                  <>
+                    <li >{spec.spec}</li>
+                  </>
+                )
+              })
+            }
           </Typography>
         </CardContent>
       </Collapse>
