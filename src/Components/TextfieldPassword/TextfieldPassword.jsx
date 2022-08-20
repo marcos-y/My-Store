@@ -32,6 +32,8 @@ export default function InputAdornments(props) {
       event.preventDefault();
     };
 
+    props.setPass(values.password);
+
     return (
         <Box sx={{ width:'100%', display: 'flex', flexWrap: 'wrap', marginTop:'20px' }}>
           <div style={{width:'100%'}}>

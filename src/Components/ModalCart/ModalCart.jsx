@@ -33,34 +33,41 @@ export default function ModalTransition(props) {
     const [click,setClick] = useState(0);
     const handleClick = () => setClick(click+1);
 
+    //ARRAY OF PRODUCTS ADDED TO CART - 'GLOBAL' ARRAY
+    const [items,setItems] = useState([{}]);
+    const [total,setTotal] = useState(0);
+
     //Buy button
     const handleClickBuy = () =>{
+        //verify form STORAGE if user is Logged
         const isLogged = (sessionStorage.getItem('isLogged'));
         console.log(isLogged);
         if(isLogged==='true'){
             alert('buyed');
+
+            //Get items from STORAGE
             const myShopping = (JSON.parse(sessionStorage.getItem('Items')));
             console.log('my Shopping:',myShopping);
+
+            //Save itmes into STORAGE
             sessionStorage.setItem('myShopping',JSON.stringify(myShopping));
+
+            //Empty cart after buying
+            setItems([{}]);
+            setTotal(0);
         }
         else{
             alert('Please Login before shopping');
         }
     }
-    
-    //EN ESTE MODAL TENGO QUE RECIBIR EL ARRAY DE PRODUCTOS QUE SE VAN AGREGANDO A LA CESTA 
-    //- EL ARRAY DEBE SER GLOBAL
-    const [items,setItems] = useState([{}]);
-    const [total,setTotal] = useState(0);
 
     useEffect(()=>{
-        //1__get item list
+        //1__get item list from STORAGE
         setItems(JSON.parse(sessionStorage.getItem('Items')));
-        //console.log('cart items:',items);
         
-        //2__get total 
-        setTotal(JSON.parse(sessionStorage.getItem('Total')));
-        //console.log('TOTAL:',total);
+        //2__get total from STORAGE
+        setTotal(JSON.parse(sessionStorage.getItem('Total'))); 
+
     },[props.open, click]);
  
     return (

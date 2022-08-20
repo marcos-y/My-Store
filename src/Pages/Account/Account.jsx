@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 
 //COMPONENTS
 import AppBar from '../../Components/AppBar/AppBar';
@@ -6,6 +6,18 @@ import TextfieldPassword from '../../Components/TextfieldPassword/TextfieldPassw
 import Button from '@mui/material/Button';
 
 const Account = () => {
+
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+
+    const setPass = (props) => {
+        setPassword(props);
+    }
+
+    const handleClick = () =>{
+        console.log(password);
+        
+    }
 
     return (
         <>
@@ -19,10 +31,10 @@ const Account = () => {
                     <div style={{ margin: 'auto' }}>
                         <h1>Account</h1>
                         <h2>Change Password</h2>
-                        <TextfieldPassword />
+                        <TextfieldPassword  password={password} setPass={setPass} />
                         <h3>Repeat password:</h3>
-                        <TextfieldPassword />
-                        <Button style={{ marginTop: '20px',marginBottom:'20px' }} variant='contained'>Submit</Button>
+                        <TextfieldPassword  password={password} setPass={setPass} />
+                        <Button onClick={handleClick} style={{ marginTop: '20px',marginBottom:'20px' }} variant='contained'>Submit</Button>
                     </div>
                 </div>
             </div>

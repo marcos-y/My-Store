@@ -23,6 +23,10 @@ const Profile = () => {
     const [country, setCountry] = useState('');
     const [state, setState] = useState('');
 
+    const setPass = (props) => {
+        setPassword(props);
+    }
+
     const handleChangeFirstName = (event) => setFirstName(event.target.value);
     const handleChangeLastName = (event) => setLastName(event.target.value);
     const handleChangeEmail = (event) => setEmail(event.target.value);
@@ -68,7 +72,7 @@ const Profile = () => {
                         <TextField value={zipCode} onChange={handleChangeZipCode} id="outlined-basic7" label="Zip Code" variant="outlined" />
                         <TextField value={country} onChange={handleChangeCountry} style={{width:'100%', marginLeft: '30px'}} id="outlined-basic8" label="Country" variant="outlined" />
                     </div>
-                    <TextfieldPassword width={'100%'} />
+                    <TextfieldPassword  password={password} setPass={setPass} width={'100%'} />
                     <Button onClick={handleClick} style={{ marginTop: '10px' }} variant="contained">Save</Button>
                 </div>
             </div>

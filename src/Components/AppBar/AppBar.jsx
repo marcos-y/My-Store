@@ -24,9 +24,13 @@ import profileImage from '../../Images/ed.jpg';
 
 const ResponsiveAppBar = () => {
 
+  //Verify from storage if USER IS LOGGED
   const isLogged = JSON.parse(sessionStorage.getItem('isLogged'));
 
+  //Public pages
   const pages = ['smartphones', 'computers', 'drones', isLogged ? null : 'Create Account'];
+
+  //Private pages
   const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -47,27 +51,37 @@ const ResponsiveAppBar = () => {
     setAnchorElUser(null);
   };
 
+  //Modal Cart
   const [openModalCart, setOpenModalCart] = React.useState(false);
   const handleOpenModalCart = () => setOpenModalCart(true);
   const handleCloseModalCart = () => setOpenModalCart(false);
 
+  //Modal Login
   const [openModalLogin, setOpenModalLogin] = React.useState(false);
   const handleOpenModalLogin = () => setOpenModalLogin(true);
   const handleCloseModalLogin = () => setOpenModalLogin(false);
 
 
   let navigate = useNavigate();
+  
+  //Logout user
   const handleClickLogout = () => {
     sessionStorage.setItem('isLogged', false);
     setAnchorElUser(null);
     navigate('/');
   }
+
+  //Navigate to dashboard
   const openDashboard = () => {
     navigate('/dashboard');
   };
+
+  //Navigate to profile
   const openProfile = () => {
     navigate('/profile');
   }
+
+  //Navigate to account settings
   const openAccount = () => {
     navigate('/account');
   }

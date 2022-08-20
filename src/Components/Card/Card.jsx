@@ -97,7 +97,7 @@ export default function RecipeReviewCard(props) {
   const handleClickAddToCart = (item) => {
     setOpen2(true);
 
-    //Get Item list
+    //Get Item list from STORAGE
     let storage = JSON.parse(sessionStorage.getItem('Items'));
 
     //Search if the product has already been added to Array
@@ -112,6 +112,7 @@ export default function RecipeReviewCard(props) {
     //--> In case it's not in the array
     if (searchItem === undefined) {
       //console.log('Items', storage);
+      //Save in the STORAGE New Item
       sessionStorage.setItem('item:', JSON.stringify(item.name));
       sessionStorage.setItem('price', JSON.stringify(item.price));
       sessionStorage.setItem('image', JSON.stringify(item.image));
@@ -188,7 +189,7 @@ export default function RecipeReviewCard(props) {
               props.specs.map((spec) => {
                 return (
                   <>
-                    <li >{spec.spec}</li>
+                    <li key={spec} >{spec.spec}</li>
                   </>
                 )
               })

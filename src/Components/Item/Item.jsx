@@ -8,14 +8,12 @@ import { isValidInputTimeValue } from '@testing-library/user-event/dist/utils';
 
 const Item = (props) => {
 
-    //1__getting product list
+    //1__getting product list from STORAGE
     const items = JSON.parse(sessionStorage.getItem('Items'));
-    //console.log('items list:', items);
+  
     //2__finding product and getting it's quantity
     const item = (items.find(({ name }) => name === props.name));
     const number = (item === undefined) ? 0 : item.quantity;
-    //console.log('item search:', item);
-    //console.log('previous item quantity:', item.quantity);
 
     const [counter, setCounter] = useState(number);
 
@@ -25,7 +23,7 @@ const Item = (props) => {
         item.quantity = item.quantity + 1;
         console.log('NEW QUANTITY', item.quantity);
 
-        //updating list with new quantity
+        //updating list with new quantity and saving in STORAGE
         Object.assign(items, item);
         console.log('Items list with new quantity:', items);
         sessionStorage.setItem('Items', JSON.stringify(items));
@@ -33,7 +31,7 @@ const Item = (props) => {
         //updating quantity number in ITEM component
         setCounter(counter + 1);
 
-        //Adding product quantity TO TOTAL
+        //Adding product quantity TO TOTAL in STORAGE
         let total = JSON.parse(sessionStorage.getItem('Total')) + (props.price);
         console.log(total);
         sessionStorage.setItem('Total', total);
@@ -48,7 +46,7 @@ const Item = (props) => {
         item.quantity = item.quantity - 1;
         console.log('NEW QUANTITY', item.quantity);
 
-        //updating list with new quantity
+        //updating list with new quantity in STORAGE
         Object.assign(items, item);
         console.log('Items list with new quantity:', items);
         sessionStorage.setItem('Items', JSON.stringify(items));
@@ -56,7 +54,7 @@ const Item = (props) => {
         //updating quantity number in ITEM component
         setCounter(counter - 1);
 
-        //Substract from TOTAL
+        //Substract from TOTAL in STORAGE
         let total = JSON.parse(sessionStorage.getItem('Total')) - (props.price);
         console.log(total);
         sessionStorage.setItem('Total', total);
@@ -66,14 +64,23 @@ const Item = (props) => {
     }
 
     const handleClickDelete = () => {
-        alert('Deleted!');
+        //alert('Deleted!');
+
+        //Get items list from STORAGE
         const array = JSON.parse(sessionStorage.getItem('Items'));
+
+        //Find product from list
         const newArray = JSON.stringify(array.filter((item) => item.name !== props.name));
-        //console.log('NewArray:', newArray);
         sessionStorage.setItem('Items', newArray);
-        const total = JSON.parse(sessionStorage.getItem('Total')) - props.price ;
-        //console.log('TOTal deleted',total);
+
+        //Delete product price from total
+        const total = JSON.parse(sessionStorage.getItem('Total')) - (props.price*counter) ;
+
+        //Save new total in STORAGE
         sessionStorage.setItem('Total',total);
+
+        //triggers useEffect
+        props.handleClick();
     }
 
     return (

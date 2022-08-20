@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 //COMPONENTS
 import AppBar from '../../Components/AppBar/AppBar';
@@ -13,6 +14,11 @@ const CreateAccount = () => {
     const [phone, setPhone] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [adress, setAdress] = useState('');
+    const [city, setCity] = useState('');
+    const [zipCode, setZipCode] = useState('');
+    const [country, setCountry] = useState('');
+    const [state, setState] = useState('');
 
     const handleChangeFirstName = (event) => setFirstName(event.target.value);
     const handleChangeLastName = (event) => setLastName(event.target.value);
@@ -20,6 +26,11 @@ const CreateAccount = () => {
     const handleChangePhone = (event) => setPhone(event.target.value);
     const handleChangePassword = (event) => setPassword(event.target.value);
     const handleChangeConfirmPassword = (event) => setConfirmPassword(event.target.value);
+    const handleChangeAdress = (event) => setAdress(event.target.value);
+    const handleChangeCity = (event) => setCity(event.target.value);
+    const handleChangeZipCode = (event) => setZipCode(event.target.value);
+    const handleChangeCountry = (event) => setCountry(event.target.value);
+    const handleChangeState = (event) => setState(event.target.value);
 
     const textfieldList = [
     {
@@ -32,7 +43,6 @@ const CreateAccount = () => {
     {
         handle: handleChangeLastName,
         value: lastName,
-        style: { marginTop: '15px' },
         id:'outlined-basic2',
         label:'Last Name',
         variant:'outlined',
@@ -40,7 +50,6 @@ const CreateAccount = () => {
     {
         handle: handleChangeEmail,
         value: email,
-        style: { marginTop: '15px' },
         id:'outlined-basic3',
         label:'Email',
         variant:'outlined'
@@ -48,7 +57,6 @@ const CreateAccount = () => {
     {
         handle: handleChangePhone,
         value: phone,
-        style: { marginTop: '15px' },
         id:'outlined-basic4',
         label:'Phone',
         variant:'outlined'
@@ -56,7 +64,6 @@ const CreateAccount = () => {
     {
         handle: handleChangePassword,
         value: password,
-        style: { marginTop: '15px' },
         id:'outlined-basic5',
         label:'Password',
         variant:'outlined'
@@ -64,21 +71,66 @@ const CreateAccount = () => {
     {
         handle: handleChangeConfirmPassword,
         value: confirmPassword,
-        style: { marginTop: '15px' },
         id:'outlined-basic6',
         label:'Confirm Password',
         variant:'outlined'
     },
+    {
+        handle: handleChangeAdress,
+        value: adress,
+        id:'outlined-basic7',
+        label:'Adress',
+        variant:'outlined',
+    },
+    {
+        handle: handleChangeCity,
+        value: city,
+        id:'outlined-basic8',
+        label:'City',
+        variant:'outlined',
+    },
+    {
+        handle: handleChangeZipCode,
+        value: zipCode,
+        id:'outlined-basic9',
+        label:'Zip Code',
+        variant:'outlined',
+    },
+    {
+        handle: handleChangeCountry,
+        value: country,
+        id:'outlined-basic10',
+        label:'Country',
+        variant:'outlined',
+    },
+    {
+        handle: handleChangeState,
+        value: state,
+        id:'outlined-basic11',
+        label:'State',
+        variant:'outlined',
+    },
 ]
 
     const handleClick = () => {
-        console.log(firstName, lastName, email, phone, password, confirmPassword);
-        setFirstName('');
-        setLastName('');
-        setEmail('');
-        setPhone('');
-        setPassword('');
-        setConfirmPassword('');
+        console.log(firstName, lastName, email, phone, password, confirmPassword,adress,city,zipCode,country,state);
+        const user = {firstName,lastName,email,phone,password,adress,city,zipCode,country,state};
+        axios.post('http://localhost:8080/users',user)
+             .then(res=> {
+                console.log(res.data);
+                setFirstName('');
+                setLastName('');
+                setEmail('');
+                setPhone('');
+                setPassword('');
+                setConfirmPassword('');
+                setAdress('');
+                setCity('');
+                setZipCode('');
+                setCountry('');
+                setState('');
+             })
+             .catch(e=>console.log(e));
     }
 
     return (
@@ -92,7 +144,7 @@ const CreateAccount = () => {
                     {
                         textfieldList.map((textfield,index)=>{
                             return(
-                                <TextField key={index} onChange={textfield.handle} value={textfield.value} style={textfield.style} id={textfield.id} label={textfield.label}  variant={textfield.variant} />
+                                <TextField  style={{ marginTop: '15px' }} key={index} onChange={textfield.handle} value={textfield.value} id={textfield.id} label={textfield.label}  variant={textfield.variant} />
                             )
                         })
                     }
