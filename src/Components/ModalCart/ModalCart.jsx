@@ -49,7 +49,7 @@ export default function ModalTransition(props) {
             const myShopping = (JSON.parse(sessionStorage.getItem('Items')));
             console.log('my Shopping:',myShopping);
 
-            //Save itmes into STORAGE
+            //Save itmes into STORAGE (SHOULD BE SAVED IN DATABASE) 
             sessionStorage.setItem('myShopping',JSON.stringify(myShopping));
 
             //Empty cart after buying

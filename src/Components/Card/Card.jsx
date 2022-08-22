@@ -131,6 +131,10 @@ export default function RecipeReviewCard(props) {
     }
   }
 
+  console.log('props image:',props.image);
+  const src = JSON.stringify(props.image);
+  console.log('src image:',src);
+
   return (
     <Card sx={{
       maxWidth: 345, marginTop: '30px', marginLeft: '20px', backgroundColor: '#e0edf4',
@@ -138,11 +142,11 @@ export default function RecipeReviewCard(props) {
     }}>
       <CardHeader
         avatar={
-          props.type === 'computer' ?
-            <ComputerIcon /> : (props.type === 'drone' ?
-              <PrecisionManufacturingIcon /> : (props.type === 'smartphone' ?
-                <SmartphoneIcon /> : (props.type === 'tablet' ?
-                  <TabletIcon /> : (props.type === 'new release' ?
+          props.type === 'computers' ?
+            <ComputerIcon /> : (props.type === 'drones' ?
+              <PrecisionManufacturingIcon /> : (props.type === 'smartphones' ?
+                <SmartphoneIcon /> : (props.type === 'tablets' ?
+                  <TabletIcon /> : (props.type === 'newitems' ?
                     <NewReleasesIcon /> : null))))
         }
         title={props.title}
@@ -185,7 +189,7 @@ export default function RecipeReviewCard(props) {
         <CardContent>
           <Typography paragraph>About this item:</Typography>
           <Typography paragraph>
-            {
+            {/*
               props.specs.map((spec) => {
                 return (
                   <>
@@ -193,7 +197,12 @@ export default function RecipeReviewCard(props) {
                   </>
                 )
               })
-            }
+            */}
+            <li key={props.spec1}>{props.spec1}</li>
+            <li key={props.spec2}>{props.spec2}</li>
+            <li key={props.spec3}>{props.spec3}</li>
+            <li key={props.spec4}>{props.spec4}</li>
+            <li key={props.spec5}>{props.spec5}</li>
           </Typography>
         </CardContent>
       </Collapse>

@@ -17,7 +17,7 @@ import img9 from '../../Images/drones/dron9.png';
 
 const Dashboard = () =>{
 
-    //Receive items from the database
+    //Receive items from the database (shouldn't be from STORAGE!)
     const items = (JSON.parse(sessionStorage.getItem('myShopping')));
     console.log('Buyed Items:',items);
 

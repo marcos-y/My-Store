@@ -1,4 +1,5 @@
-import React from 'react';
+import React,{useEffect,useState} from 'react';
+import axios from "axios";
 import AppBar from '../../Components/AppBar/AppBar';
 import Card from '../../Components/Card/Card';
 import img1 from '../../Images/computers/asus1.jpg';
@@ -13,6 +14,20 @@ import img9 from '../../Images/computers/lenovo2.png';
 
 const Computers = () => {
 
+    const [items, setItems] = useState([]);
+
+    useEffect(() => {
+        axios.
+            get('http://localhost:8080/products/computers')
+            .then(res => {
+                console.log('database data:', res.data.data);
+                setItems(res.data.data);
+                console.log('new array:', items);
+            })
+            .catch(e => console.log(e));
+    },[])
+
+    {/*
     const items = [
         {
             title: 'Asus E410',
@@ -141,6 +156,8 @@ const Computers = () => {
             ]
         }
     ]
+    */}
+    
 
     return (
         <>
@@ -166,8 +183,18 @@ const Computers = () => {
                 */}
                 <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}>
                     {
-                        items.map((item, index) => (<Card key={index} price={item.price} image={item.image} title={item.title}
-                            type={item.type} description={item.description} specs={item.specs} />))
+                        items.map((item, index) => (
+                            <Card key={index} 
+                            price={item.price} 
+                            image={item.image} 
+                            title={item.title}
+                            spec1={item.spec1}  
+                            spec2={item.spec2}  
+                            spec3={item.spec3}  
+                            spec4={item.spec4}  
+                            spec5={item.spec5}
+                            type={item.type} 
+                            description={item.description} />))
                     }
                 </div>
             </div>
