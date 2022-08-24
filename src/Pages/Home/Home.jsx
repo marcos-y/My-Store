@@ -21,8 +21,8 @@ const Home = () => {
     const [items, setItems] = useState([]);
 
     useEffect(() => {
-        axios.
-            get('http://localhost:8080/products/newitems')
+        axios
+            .get('http://localhost:8080/products/newitems')
             .then(res => {
                 console.log('database data:', res.data.data);
                 setItems(res.data.data);
